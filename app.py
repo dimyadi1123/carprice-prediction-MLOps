@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, jsonify, request
 import pickle
 from sklearn.ensemble import ExtraTreesRegressor
 import pandas as pd
+import os
 from pycaret.regression import load_model, predict_model
 
 # Inisialisasi Flask
@@ -9,10 +10,11 @@ from pycaret.regression import load_model, predict_model
 app = Flask(__name__)
 
 # Load model
-model = load_model('my_best_pipeline')
+model = load_model('model/my_best_pipeline')
 
 @app.route("/")
 def beranda():
+    # Lakukan sesuaikan path dengan struktur direktori kamu
     return render_template('index.html')
 
 # Definisikan rute untuk melakukan prediksi
@@ -44,5 +46,8 @@ def predict():
 
     # Render halaman hasil dengan prediksi
     return render_template('index.html', prediction=formatted_result)
+
+def show_list():
+    return
 
 
