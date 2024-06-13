@@ -19,10 +19,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose port yang digunakan oleh aplikasi (misalnya Flask)
-EXPOSE 5000
+EXPOSE 8000
 
-# Atur environment variable untuk Flask (jika diperlukan)
-ENV FLASK_APP=app.py
+# # Atur environment variable untuk Flask (jika diperlukan)
+# ENV FLASK_APP=app.py
 
 # Jalankan aplikasi saat container dijalankan
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["python", "app.py", "runserver", "0.0.0.0:8000"]
