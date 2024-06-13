@@ -77,7 +77,7 @@ def predict():
 
 def run_scheduled_tasks():
     try:
-        scheduled_scraping_job()
+        # scheduled_scraping_job()
         modelling()
     except Exception as e:
         print(f"Error running scheduled tasks: {e}")
