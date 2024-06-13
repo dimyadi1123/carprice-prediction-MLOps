@@ -6,7 +6,7 @@ import pandas as pd
 import os
 from pycaret.regression import load_model, predict_model
 from apscheduler.schedulers.background import BackgroundScheduler
-from pipeline.ingestion import scheduled_scraping_job
+# from pipeline.ingestion import scheduled_scraping_job
 from pipeline.modelling import modelling
 from apscheduler.triggers.cron import CronTrigger
 import atexit
