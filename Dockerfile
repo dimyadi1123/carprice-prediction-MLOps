@@ -6,7 +6,13 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
+# Install system dependencies yang dibutuhkan
+RUN apt-get update && apt-get install -y \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install dependensi Python yang dibutuhkan
+run pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy seluruh kode aplikasi Flask ke dalam container
