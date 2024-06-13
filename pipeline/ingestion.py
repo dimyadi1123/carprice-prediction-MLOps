@@ -1,133 +1,144 @@
-import pandas as pd
+import os
 import time
-from bs4 import BeautifulSoup
+import csv
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from webdriver_manager.chrome import ChromeDriverManager
-from selenium_stealth import stealth
-from tqdm import tqdm
-from sqlalchemy import insert
-import datetime
+from bs4 import BeautifulSoup
 
+# Selenium WebDriver configuration
 options = webdriver.ChromeOptions()
 options.add_argument("--headless")
 options.add_argument("--no-sandbox")
 options.add_argument('--disable-dev-shm-usage')
+options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
 options.add_experimental_option("excludeSwitches", ["enable-automation"])
 options.add_experimental_option('useAutomationExtension', False)
 
-s=Service(ChromeDriverManager().install())
+s = Service(ChromeDriverManager().install())
 driver = webdriver.Chrome(service=s, options=options)
 
-stealth(driver,
-        languages=["en-US", "en"],
-        vendor="Google Inc.",
-        platform="Win32",
-        webgl_vendor="Intel Inc.",
-        renderer="Intel Iris OpenGL Engine",
-        fix_hairline=True,
-)
-
-
-def get_first_data(driver, page, connection, log):
-    data = {
-        "judul" : [],
-        "harga" : [],
-        "cicilan" : [],
-        "kecamatan" : [],
-        "luas tanah" : [],
-        "luas bangunan" : [],
-        "link" : []
+def scrape_key_details(soup):
+    car_data = {
+        'Kondisi': "N/A",
+        'Tahun Kendaraan': "N/A",
+        'Kilometer': "N/A",
+        'Warna': "N/A",
+        'Cakupan mesin': "N/A",
+        'Transmisi': "N/A",
+        'Penumpang': "N/A"
     }
-    for i in tqdm(range(page), desc="Get Cover Data"):
-        url = f'https://www.rumah123.com/jual/cari/?location=surabaya&page={i+1}'
+    specs = soup.select(".c-key-details__item")
+    for spec in specs:
         try:
-            driver.set_page_load_timeout(10)
-            driver.get(url)
-        except TimeoutException:
-            log_handler(connection, log, f'Timeout...{i}')
-            continue
-        content = driver.page_source
-        soup = BeautifulSoup(content, 'html.parser')
-        section_class = soup.find_all(class_="card-featured__middle-section")
-        for section in section_class:
-            data["judul"].append(section.find("h2").get_text())
-            data["harga"].append(section.find("strong").get_text())
-            data["cicilan"].append(section.find("em").get_text())
-            data["kecamatan"].append([kecamatan.get_text() for kecamatan in section.find_all("span") if "Surabaya" in kecamatan.get_text()][0])
-            data["luas tanah"].append(section.find_all(class_ = "attribute-info")[0].get_text().replace("LT : ", ""))
-            try:
-                data["luas bangunan"].append(section.find_all(class_ = "attribute-info")[1].get_text().replace("LB : ", ""))
-            except:
-                data["luas bangunan"].append("")
-            data["link"].append(section.a["href"])
-        time.sleep(3)
-
-    df = pd.DataFrame(data)
-    return df
-
-def get_all_data(df_cover, driver, connection, log):
-    extension_links = df_cover["link"].tolist()
-    save_list = []
-    for i, extension in tqdm(enumerate(extension_links), desc="Get All Data"):
-        try:
-            data_full = {
-                "link" : extension,
-                "fasilitas" : []
-            }
-            url = f'https://www.rumah123.com{extension}'
-            try:
-                driver.set_page_load_timeout(10)
-                driver.get(url)
-            except TimeoutException:
-                log_handler(connection, log, f'Timeout...{i}')
-                continue
-            content = driver.page_source
-            soup = BeautifulSoup(content, 'html.parser')
-            last_update = soup.find_all(class_ = "r123-listing-summary__header-container-updated")
-            data_full["last_update"] = last_update[0].get_text()
-            items = soup.find_all(class_ = "listing-specification-v2__item-label")
-            values = soup.find_all(class_ = "listing-specification-v2__item-value")
-            for item, value in zip (items, values):
-                data_full[item.get_text()] = value.get_text()
-            desc = soup.find(class_ = "ui-atomic-text ui-atomic-text--styling-default ui-atomic-text--typeface-primary content-wrapper").get_text()
-            data_full["deskripsi"] = desc
-            data_full["fasilitas"] = ", ".join([fasilitas.get_text().strip() for fasilitas in soup.find_all(class_ = "ui-facilities-portal__text")])
-            save_list.append(data_full)
-            time.sleep(3)
+            key = spec.select_one("span.u-text-7").text.strip()
+            value = spec.select_one("span.u-text-bold").text.strip()
+            if key in car_data:
+                car_data[key] = value
         except Exception as e:
-            """
-            error udah dicheck dia emang di beberapa tempat kalo diclick return ke halaman yang bukan dituju
-            tapi malah ke link https://www.rumah123.com/jual/surabaya/rumah/ seharusnya bug dari web-nya.
-            """
-            print(e)
-            log_handler(connection, log, f'error di link {extension} dengan error:')
-            time.sleep(10)
-    return save_list
+            print(f"Error parsing key detail: {e}")
+            continue
+    return car_data
 
-def log_handler(connection, log, msg):
-    instruction = insert(log).values(log=f'{msg}', date=datetime.datetime.now())
-    connection.execute(instruction)
-    connection.commit()
+def scrape_specifications(soup):
+    additional_data = {
+        'Pintu': "N/A",
+        'Dirakit': "N/A",
+        'Tipe Bahan Bakar': "N/A"
+    }
+    spec_tab = soup.select_one("#tab-specifications")
+    if spec_tab:
+        spec_items = spec_tab.select(".u-border-bottom.u-padding-ends-xs.u-flex.u-flex--justify-between")
+        for item in spec_items:
+            try:
+                key = item.select("span")[0].text.strip()
+                value = item.select("span")[1].text.strip()
+                if key in additional_data:
+                    additional_data[key] = value
+            except Exception as e:
+                print(f"Error parsing specification: {e}")
+                continue
+    return additional_data
 
-def main(connection, log, engine):
-    start = time.time()
-    log_handler(connection, log, 'Get Rumah123 Data...')
-    df_cover = get_first_data(driver, 3, connection, log)
+def scrape_page(page_number, data_list):
+    url = f'https://www.mobil123.com/mobil-dijual/indonesia?type=used&page_number={page_number}&page_size=25'
+    driver.get(url)
+    try:
+        WebDriverWait(driver, 15).until(
+            EC.presence_of_element_located((By.CSS_SELECTOR, "h2.listing__title a"))
+        )
+    except TimeoutException:
+        print(f"TimeoutException at page {page_number}")
+        return
 
-    log_handler(connection, log, 'Get All Data...')
-    save_list = get_all_data(df_cover, driver, connection, log)
+    car_elements = driver.find_elements(By.CSS_SELECTOR, "h2.listing__title a")
+    car_urls = [car.get_attribute('href') for car in car_elements]
 
-    log_handler(connection, log, 'Exporting Data...')
-    df_detail = pd.DataFrame(save_list)
-    df_full = pd.merge(df_cover, df_detail, "left", on = "link")
-    df_full.to_sql('users_properti', con=engine, if_exists='replace', index=False)
+    for car_url in car_urls:
+        driver.get(car_url)
+        try:
+            WebDriverWait(driver, 15).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, "h1.u-text-bold"))
+            )
+        except TimeoutException:
+            print(f"TimeoutException at car URL: {car_url}")
+            continue
 
-    stop = time.time()
-    waktu = stop-start
-    log_handler(connection, log, f'Scrap Complete on: {waktu}')
+        soup = BeautifulSoup(driver.page_source, 'html.parser')
 
+        car_details = {}
 
-if _name_ == "_main_":
-    main()
+        try:
+            car_details['Title'] = soup.select_one("h1.u-text-bold").text.strip()
+        except Exception as e:
+            print(f"Error parsing title: {e}")
+            car_details['Title'] = "N/A"
+
+        try:
+            car_details['Harga'] = soup.select_one("div.listing__price.u-text-4.u-text-bold").text.strip()
+        except Exception as e:
+            print(f"Error parsing price: {e}")
+            car_details['Harga'] = "N/A"
+
+        # Scraping key details
+        key_details = scrape_key_details(soup)
+        car_details.update(key_details)
+
+        # Scraping additional specifications
+        specifications = scrape_specifications(soup)
+        car_details.update(specifications)
+
+        data_list.append(car_details)
+        time.sleep(1)
+
+def scheduled_scraping_job():
+    data_list = []  # Reset data list
+    for page in range(1, 2):  # Adjust range as needed
+        scrape_page(page, data_list)
+        time.sleep(5)
+    
+    if data_list:
+        # Ensure the 'data' folder exists
+        if not os.path.exists('data'):
+            os.makedirs('data')
+        
+        file_path = os.path.join('data', 'car_data.csv')
+        file_exists = os.path.isfile(file_path)
+
+        keys = data_list[0].keys()
+        with open(file_path, 'a', newline='', encoding='utf-8') as output_file:
+            dict_writer = csv.DictWriter(output_file, fieldnames=keys)
+            if not file_exists:
+                dict_writer.writeheader()
+            dict_writer.writerows(data_list)
+
+# Close the driver when the program ends
+def cleanup_driver():
+    driver.quit()
+
+import atexit
+atexit.register(cleanup_driver)

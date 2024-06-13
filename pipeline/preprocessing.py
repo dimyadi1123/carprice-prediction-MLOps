@@ -64,12 +64,16 @@ def nilai_kedua(nilai):
     nilai_kedua = nilai.split(' ')[1]
     return nilai_kedua.strip()
 
+def clean_and_convert_to_int(value):
+    # Menghapus titik dari nilai string
+    cleaned_value = re.sub(r'\.', '', value)
+    return int(cleaned_value)
+
 def preprocess_data(df):
-    df = df.copy()  # Create a copy to avoid modifying the original DataFrame
     
     df.dropna(inplace=True)
     df.drop_duplicates(inplace=True)
-
+    
     df['jenis_mobil'] = df['Title'].apply(extract_jenis_mobil)
     df = df[df['jenis_mobil'] != 'Jenis tidak ditemukan']
 
@@ -82,6 +86,7 @@ def preprocess_data(df):
     df['Kilometer'] = df['Kilometer'].astype(int)
 
     df["Harga"] = df["Harga"].apply(nilai_kedua)
+    df["Harga"] = df["Harga"].apply(clean_and_convert_to_int)
     df["Cakupan mesin"] = df["Cakupan mesin"].apply(nilai_awal)
     df['Cakupan mesin'] = df['Cakupan mesin'].replace('cc', '0')
     df['Cakupan mesin'] = df['Cakupan mesin'].astype(int)
@@ -106,4 +111,18 @@ def preprocess_data(df):
     ordered_columns = ['brand', 'jenis_mobil', 'tahun_kendaraan', 'warna', 'transmisi', 'kilometer', 'mesin_enginecc', 'bahan_bakar', 'dirakit', 'penumpang', 'pintu', 'harga']
     df = df[ordered_columns]
 
+    df.dropna(inplace=True)
+    df.drop_duplicates(inplace=True)
+
+    # Menampilkan hasil preprocessing
+    print("Data setelah preprocessing:")
+    print(df.head())
+
+
+    # Menampilkan tipe data
+    print("Tipe Data:")
+    print(df.dtypes)
     return df
+
+# order_kolom = ['Title','Harga','Kondisi','Tahun Kendaraan','Kilometer','Warna','Cakupan mesin','Transmisi','Penumpang','Pintu','Dirakit','Tipe Bahan Bakar']
+# df = df[order_kolom]

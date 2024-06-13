@@ -1,0 +1,70 @@
+name: Data Pipeline Automation
+
+on:
+  schedule:
+    # Menjadwalkan scraping setiap hari pada jam 12 malam
+    - cron: "0 0 * * *"
+    # Menjadwalkan preprocessing setiap hari pada jam 12:30 malam
+    - cron: "30 0 * * *"
+    # Menjadwalkan training model setiap minggu pada hari Minggu jam 1 pagi
+    - cron: "0 1 * * 0"
+
+jobs:
+  scraping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt
+      - name: Run scraping script
+        run: |
+          . venv/bin/activate
+          python scripts/scraping.py
+
+  preprocessing:
+    runs-on: ubuntu-latest
+    needs: scraping
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt
+      - name: Run preprocessing script
+        run: |
+          . venv/bin/activate
+          python scripts/preprocessing.py
+
+  train_model:
+    runs-on: ubuntu-latest
+    needs: preprocessing
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt
+      - name: Run training script
+        run: |
+          . venv/bin/activate
+          python scripts/train_model.py

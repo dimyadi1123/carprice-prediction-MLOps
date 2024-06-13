@@ -145,13 +145,11 @@
                   data-out="fadeOutUp"
                 >
                   <li class="scroll active"><a href="#home">home</a></li>
+                  <li class="scroll"><a href="#tips-trick">Tips & Trick</a></li>
                   <li class="scroll"><a href="#service">Prediksi Harga</a></li>
-                  <li class="scroll"><a href="#new-cars">hasil prediksi</a></li>
-                  <li class="scroll">
-                    <a href="#featured-cars">featured cars</a>
-                  </li>
+                  <li class="scroll"><a href="#contact">Feedback</a></li>
                 </ul>
-                <!--/.nav -->
+                <!--/.nav -->>
               </div>
               <!-- /.navbar-collapse -->
             </div>
@@ -168,19 +166,150 @@
 
       <div class="container">
         <div class="welcome-hero-txt">
-          <h2>get your desired car in resonable price</h2>
+          <h2>Selamat Datang di Lamokas (lapak mobil bekas)</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Kami hadir untuk memudahkan Anda dalam mencari dan menjual mobil
+            bekas. Jelajahi berbagai pilihan mobil bekas dengan kualitas
+            terjamin dan nikmati proses jual beli yang cepat dan aman bersama
+            kami
           </p>
           <button class="welcome-btn" onclick="window.location.href='#service'">
-            PREDIKSI
+            Let's Roll
           </button>
         </div>
       </div>
     </section>
     <!--/.welcome-hero-->
     <!--welcome-hero end -->
+    <section id="tips-trick" class="tips-trick">
+      <div class="container">
+        <div class="section-header">
+          <p>Tips & Trick for</p>
+          <h2>Seller & Buyer</h2>
+        </div>
+        <!--/.section-header-->
+        <div class="new-cars-content">
+          <div class="owl-carousel owl-theme" id="new-cars-carousel">
+            <div class="new-cars-item">
+              <div class="single-new-cars-item">
+                <div class="row">
+                  <div class="col-md-7 col-sm-12">
+                    <div class="new-cars-img">
+                      <img
+                        src="{{ url_for('static', filename='assets/images/new-cars-model/ncm1.png')}}"
+                        alt="img"
+                      />
+                    </div>
+                    <!--/.new-cars-img-->
+                  </div>
+                  <div class="col-md-5 col-sm-12">
+                    <div class="new-cars-txt">
+                      <h2>TIPS FOR SELLER :</h2>
+                      <ol>
+                        <li>
+                          <strong>Siapkan Mobil dan Dokumen:</strong><br />
+                          Bersihkan mobil, perbaiki kerusakan kecil, dan
+                          pastikan dokumen lengkap.
+                        </li>
+                        <li>
+                          <strong>Tentukan Harga dan Buat Iklan Menarik:</strong
+                          ><br />
+                          Tetapkan harga yang realistis dan buat iklan dengan
+                          foto berkualitas serta deskripsi detail.
+                        </li>
+                        <li>
+                          <strong
+                            >Jujur tentang Kondisi dan Tawarkan Test
+                            Drive:</strong
+                          ><br />
+                          Sampaikan kondisi mobil dengan jujur dan berikan
+                          kesempatan test drive.
+                        </li>
+                        <li>
+                          <strong
+                            >Negosiasi dengan Bijak dan Amankan
+                            Transaksi:</strong
+                          ><br />
+                          Negosiasikan harga dengan bijak dan pastikan transaksi
+                          aman.
+                        </li>
+                        <li>
+                          <strong>Buat Perjanjian Tertulis:</strong><br />
+                          Buat perjanjian jual beli tertulis untuk menghindari
+                          perselisihan.
+                        </li>
+                      </ol>
+                    </div>
+                    <!--/.new-cars-txt-->
+                  </div>
+                  <!--/.col-->
+                </div>
+                <!--/.row-->
+              </div>
+              <!--/.single-new-cars-item-->
+            </div>
+            <!--/.new-cars-item-->
+            <div class="new-cars-item">
+              <div class="single-new-cars-item">
+                <div class="row">
+                  <div class="col-md-7 col-sm-12">
+                    <div class="new-cars-img">
+                      <img
+                        src="{{ url_for('static', filename='assets/images/new-cars-model/ncm2.png')}}"
+                        alt="img"
+                      />
+                    </div>
+                    <!--/.new-cars-img-->
+                  </div>
+                  <div class="col-md-5 col-sm-12">
+                    <div class="new-cars-txt">
+                      <h2>TIPS FOR BUYER :</h2>
+                      <ol>
+                        <li>
+                          <strong>Tentukan Anggaran:</strong><br />
+                          Tetapkan anggaran termasuk biaya tambahan seperti
+                          pajak dan perbaikan.
+                        </li>
+                        <li>
+                          <strong>Riset dan Periksa Riwayat:</strong><br />
+                          Cari informasi tentang model mobil dan periksa riwayat
+                          servis serta kecelakaan.
+                        </li>
+                        <li>
+                          <strong>Inspeksi dan Test Drive:</strong><br />
+                          Periksa kondisi mobil dengan cermat dan lakukan test
+                          drive.
+                        </li>
+                        <li>
+                          <strong>Cek Dokumen dan Negosiasi Harga:</strong
+                          ><br />
+                          Pastikan dokumen lengkap dan asli, lalu negosiasikan
+                          harga sesuai kondisi mobil.
+                        </li>
+                        <li>
+                          <strong>Gunakan Jasa Pihak Ketiga:</strong><br />
+                          Pertimbangkan menggunakan jasa inspeksi pihak ketiga
+                          untuk evaluasi lebih lanjut.
+                        </li>
+                      </ol>
+                    </div>
+                    <!--/.new-cars-txt-->
+                  </div>
+                  <!--/.col-->
+                </div>
+                <!--/.row-->
+              </div>
+              <!--/.single-new-cars-item-->
+            </div>
+            <!--/.new-cars-item-->
+          </div>
+          <!--/#new-cars-carousel-->
+        </div>
+        <!--/.new-cars-content-->
+      </div>
+      <!--/.container-->
+    </section>
+    <!--/.new-cars-->
 
     <!--service start -->
     <section id="service" class="service">
@@ -434,413 +563,129 @@
           </div>
         </div>
       </div>
+
+      <div>
+        <div class="container" style="padding-top: 300px">
+          <div class="section-header">
+            <p>Hasil Prediksi Harga :</p>
+            <h2>{{prediction}}</h2>
+          </div>
+          <!--/.section-header-->
+        </div>
+      </div>
+
+      <div id="result">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Nama Mobil</th>
+                <th>Harga</th>
+                <!-- Adjusted column name to match 'harga' -->
+              </tr>
+            </thead>
+            <tbody>
+              {% for mobil in list_mobil %}
+              <tr>
+                <td>{{ mobil['nama_mobil'] }}</td>
+                <!-- Adjusted key to match 'nama_mobil' -->
+                <td>{{ mobil['harga'] }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </section>
     <!--/.service-->
     <!--service end-->
 
     <!-- result predict -->
-    <section id="new-cars" class="new-cars">
-      <div class="container">
-        <div class="section-header">
-          <p>Hasil Prediksi Harga :</p>
-          <h2>{{prediction}}</h2>
+    <!-- <section id="new-cars" class="new-cars">
+      <div>
+        <div class="container">
+          <div class="section-header">
+            <p>Hasil Prediksi Harga :</p>
+            <h2>{{prediction}}</h2>
+          </div>
         </div>
-        <!--/.section-header-->
       </div>
-      <!--/.container-->
-    </section>
+    </section> -->
     <!--result predict end -->
 
-    <!--featured-cars start -->
-    <section id="featured-cars" class="featured-cars">
-      <div class="container">
-        <div class="section-header">
-          <p>Hasil rekomendasi</p>
-          <h2>mobil</h2>
+    <footer class="footer-container">
+      <div class="footer-content">
+        <div class="footer-contact-info">
+          <h2>Contact Information</h2>
+          <p>
+            Kami menyediakan platform terbaik untuk jual beli mobil bekas dengan
+            berbagai pilihan dan harga kompetitif. Dapatkan mobil impian Anda
+            dengan mudah dan aman di LAMOKAS. Hubungi kami untuk informasi lebih
+            lanjut.
+          </p>
+          <div class="footer-contact-item">
+            <i class="fa fa-whatsapp"></i>
+            <span>+62-851-5788-8638</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa fa-instagram"></i>
+            <span>@lamokas24</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fa fa-envelope"></i>
+            <span>lamokas24@gmail.com</span>
+          </div>
+          <div class="footer-contact-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Surabaya, Indonesia</span>
+          </div>
         </div>
-        <!--/.section-header-->
-        <div class="featured-cars-content">
-          <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="single-featured-cars">
-                <div class="featured-img-box">
-                  <div class="featured-cars-img">
-                    <img
-                      src="{{ url_for('static', filename='assets/images/featured-cars/fc1.png')}}"
-                      alt="cars"
-                    />
-                  </div>
-                  <div class="featured-model-info">
-                    <p>
-                      model: 2017
-                      <span class="featured-mi-span"> 3100 mi</span>
-                      <span class="featured-hp-span"> 240HP</span>
-                      automatic
-                    </p>
-                  </div>
-                </div>
-                <div class="featured-cars-txt">
-                  <h2><a href="#">BMW 6-series gran coupe</a></h2>
-                  <h3>$89,395</h3>
-                  <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non.
-                  </p>
-                </div>
-              </div>
+        <div class="footer-contact-form">
+          <h2>Lemme know your feedback</h2>
+          <form>
+            <div class="footer-form-group">
+              <label for="name">Your Name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Vaness Tejo"
+              />
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="single-featured-cars">
-                <div class="featured-img-box">
-                  <div class="featured-cars-img">
-                    <img
-                      src="{{ url_for('static', filename='assets/images/featured-cars/fc2.png')}}"
-                      alt="cars"
-                    />
-                  </div>
-                  <div class="featured-model-info">
-                    <p>
-                      model: 2017
-                      <span class="featured-mi-span"> 3100 mi</span>
-                      <span class="featured-hp-span"> 240HP</span>
-                      automatic
-                    </p>
-                  </div>
-                </div>
-                <div class="featured-cars-txt">
-                  <h2>
-                    <a href="#">chevrolet camaro <span>wmv20</span></a>
-                  </h2>
-                  <h3>$66,575</h3>
-                  <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non.
-                  </p>
-                </div>
-              </div>
+            <div class="footer-form-group">
+              <label for="email">Your Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="vanessnakanaori2003@gmail.com"
+              />
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="single-featured-cars">
-                <div class="featured-img-box">
-                  <div class="featured-cars-img">
-                    <img
-                      src="{{ url_for('static', filename='assets/images/featured-cars/fc3.png')}}"
-                      alt="cars"
-                    />
-                  </div>
-                  <div class="featured-model-info">
-                    <p>
-                      model: 2017
-                      <span class="featured-mi-span"> 3100 mi</span>
-                      <span class="featured-hp-span"> 240HP</span>
-                      automatic
-                    </p>
-                  </div>
-                </div>
-                <div class="featured-cars-txt">
-                  <h2>
-                    <a href="#">lamborghini <span>v520</span></a>
-                  </h2>
-                  <h3>$125,250</h3>
-                  <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non.
-                  </p>
-                </div>
-              </div>
+            <div class="footer-form-group">
+              <label for="subject">Your Subject</label>
+              <input
+                type="text"
+                id="subject"
+                name="subject"
+                placeholder="I want to give a feedback"
+              />
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="single-featured-cars">
-                <div class="featured-img-box">
-                  <div class="featured-cars-img">
-                    <img
-                      src="{{ url_for('static', filename='assets/images/featured-cars/fc4.png')}}"
-                      alt="cars"
-                    />
-                  </div>
-                  <div class="featured-model-info">
-                    <p>
-                      model: 2017
-                      <span class="featured-mi-span"> 3100 mi</span>
-                      <span class="featured-hp-span"> 240HP</span>
-                      automatic
-                    </p>
-                  </div>
-                </div>
-                <div class="featured-cars-txt">
-                  <h2>
-                    <a href="#">audi <span> a3</span> sedan</a>
-                  </h2>
-                  <h3>$95,500</h3>
-                  <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non.
-                  </p>
-                </div>
-              </div>
+            <div class="footer-form-group">
+              <label for="message">Message</label>
+              <textarea
+                id="message"
+                name="message"
+                rows="4"
+                placeholder="Write here your message"
+              ></textarea>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="single-featured-cars">
-                <div class="featured-img-box">
-                  <div class="featured-cars-img">
-                    <img
-                      src="{{ url_for('static', filename='assets/images/featured-cars/fc4.png')}}"
-                      alt="cars"
-                    />
-                  </div>
-                  <div class="featured-model-info">
-                    <p>
-                      model: 2017
-                      <span class="featured-mi-span"> 3100 mi</span>
-                      <span class="featured-hp-span"> 240HP</span>
-                      automatic
-                    </p>
-                  </div>
-                </div>
-                <div class="featured-cars-txt">
-                  <h2>
-                    <a href="#">infiniti <span>z5</span></a>
-                  </h2>
-                  <h3>$36,850</h3>
-                  <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non.
-                  </p>
-                </div>
-              </div>
+            <div class="footer-form-group">
+              <button type="submit">Send Message</button>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="single-featured-cars">
-                <div class="featured-img-box">
-                  <div class="featured-cars-img">
-                    <img
-                      src="{{ url_for('static', filename='assets/images/featured-cars/fc5.png')}}"
-                      alt="cars"
-                    />
-                  </div>
-                  <div class="featured-model-info">
-                    <p>
-                      model: 2017
-                      <span class="featured-mi-span"> 3100 mi</span>
-                      <span class="featured-hp-span"> 240HP</span>
-                      automatic
-                    </p>
-                  </div>
-                </div>
-                <div class="featured-cars-txt">
-                  <h2>
-                    <a href="#">porsche <span>718</span> cayman</a>
-                  </h2>
-                  <h3>$48,500</h3>
-                  <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="single-featured-cars">
-                <div class="featured-img-box">
-                  <div class="featured-cars-img">
-                    <img
-                      src="{{ url_for('static', filename='assets/images/featured-cars/fc7.png')}}"
-                      alt="cars"
-                    />
-                  </div>
-                  <div class="featured-model-info">
-                    <p>
-                      model: 2017
-                      <span class="featured-mi-span"> 3100 mi</span>
-                      <span class="featured-hp-span"> 240HP</span>
-                      automatic
-                    </p>
-                  </div>
-                </div>
-                <div class="featured-cars-txt">
-                  <h2>
-                    <a href="#"><span>bmw 8-</span>series coupe</a>
-                  </h2>
-                  <h3>$56,000</h3>
-                  <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="single-featured-cars">
-                <div class="featured-img-box">
-                  <div class="featured-cars-img">
-                    <img
-                      src="{{ url_for('static', filename='assets/images/featured-cars/fc8.png')}}"
-                      alt="cars"
-                    />
-                  </div>
-                  <div class="featured-model-info">
-                    <p>
-                      model: 2017
-                      <span class="featured-mi-span"> 3100 mi</span>
-                      <span class="featured-hp-span"> 240HP</span>
-                      automatic
-                    </p>
-                  </div>
-                </div>
-                <div class="featured-cars-txt">
-                  <h2>
-                    <a href="#">BMW <span> x</span>series-6</a>
-                  </h2>
-                  <h3>$75,800</h3>
-                  <p>
-                    Neque porro quisquam est, qui dolorem ipsum quia dolor sit
-                    amet, consectetur, adipisci velit, sed quia non.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          </form>
         </div>
       </div>
-      <!--/.container-->
-    </section>
-    <!--/.featured-cars-->
-    <!--featured-cars end -->
-
-    <!--blog start -->
-    <section id="blog" class="blog"></section>
-    <!--/.blog-->
-    <!--blog end -->
-
-    <!--contact start-->
-    <footer id="contact" class="contact">
-      <div class="container">
-        <div class="footer-top">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
-              <div class="single-footer-widget">
-                <div class="footer-logo">
-                  <a href="index.html">carvilla</a>
-                </div>
-                <p>
-                  Ased do eiusm tempor incidi ut labore et dolore magnaian
-                  aliqua. Ut enim ad minim veniam.
-                </p>
-                <div class="footer-contact">
-                  <p>info@themesine.com</p>
-                  <p>+1 (885) 2563154554</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-2 col-sm-6">
-              <div class="single-footer-widget">
-                <h2>about devloon</h2>
-                <ul>
-                  <li><a href="#">about us</a></li>
-                  <li><a href="#">career</a></li>
-                  <li>
-                    <a href="#">terms <span> of service</span></a>
-                  </li>
-                  <li><a href="#">privacy policy</a></li>
-                </ul>
-              </div>
-            </div>
-            <div class="col-md-3 col-xs-12">
-              <div class="single-footer-widget">
-                <h2>top brands</h2>
-                <div class="row">
-                  <div class="col-md-7 col-xs-6">
-                    <ul>
-                      <li><a href="#">BMW</a></li>
-                      <li><a href="#">lamborghini</a></li>
-                      <li><a href="#">camaro</a></li>
-                      <li><a href="#">audi</a></li>
-                      <li><a href="#">infiniti</a></li>
-                      <li><a href="#">nissan</a></li>
-                    </ul>
-                  </div>
-                  <div class="col-md-5 col-xs-6">
-                    <ul>
-                      <li><a href="#">ferrari</a></li>
-                      <li><a href="#">porsche</a></li>
-                      <li><a href="#">land rover</a></li>
-                      <li><a href="#">aston martin</a></li>
-                      <li><a href="#">mersedes</a></li>
-                      <li><a href="#">opel</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-offset-1 col-md-3 col-sm-6">
-              <div class="single-footer-widget">
-                <h2>news letter</h2>
-                <div class="footer-newsletter">
-                  <p>Subscribe to get latest news update and informations</p>
-                </div>
-                <div class="hm-foot-email">
-                  <div class="foot-email-box">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Add Email"
-                    />
-                  </div>
-                  <!--/.foot-email-box-->
-                  <div class="foot-email-subscribe">
-                    <span><i class="fa fa-arrow-right"></i></span>
-                  </div>
-                  <!--/.foot-email-icon-->
-                </div>
-                <!--/.hm-foot-email-->
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer-copyright">
-          <div class="row">
-            <div class="col-sm-6">
-              <p>
-                &copy; copyright.designed and developed by
-                <a href="https://www.themesine.com/">themesine</a>.
-              </p>
-              <!--/p-->
-            </div>
-            <div class="col-sm-6">
-              <div class="footer-social">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-                <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                <a href="#"><i class="fa fa-behance"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!--/.footer-copyright-->
-      </div>
-      <!--/.container-->
-
-      <div id="scroll-Top">
-        <div class="return-to-top">
-          <i
-            class="fa fa-angle-up"
-            id="scroll-top"
-            data-toggle="tooltip"
-            data-placement="top"
-            title=""
-            data-original-title="Back to Top"
-            aria-hidden="true"
-          ></i>
-        </div>
-      </div>
-      <!--/.scroll-Top-->
     </footer>
-    <!--/.contact-->
-    <!--contact end-->
-
     <!-- Include all js compiled plugins (below), or include individual files as needed -->
     <script>
       const slider = document.getElementById("rangeSlider");
@@ -856,6 +701,12 @@
 
       slider2.addEventListener("input", function () {
         sliderValue2.textContent = slider2.value;
+      });
+      document.addEventListener("DOMContentLoaded", function () {
+        const resultElement = document.getElementById("result");
+        if (resultElement) {
+          resultElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
       });
     </script>
 
