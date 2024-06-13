@@ -4,8 +4,9 @@ FROM python:3.11-slim
 # Set working directory di dalam container
 WORKDIR /app
 
+COPY requirements.txt requirements.txt
+
 # Install dependensi Python yang dibutuhkan
-COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy seluruh kode aplikasi Flask ke dalam container
