@@ -9,7 +9,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy seluruh kode aplikasi Flask ke dalam container
-COPY . /app
+COPY . .
 
 # Expose port yang digunakan oleh aplikasi (misalnya Flask)
 EXPOSE 5000
