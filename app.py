@@ -6,7 +6,7 @@ import pandas as pd
 import os
 from pycaret.regression import load_model, predict_model
 from apscheduler.schedulers.background import BackgroundScheduler
-# from pipeline.ingestion import scheduled_scraping_job
+from pipeline.ingestion import scheduled_scraping_job
 from pipeline.modelling import modelling
 from apscheduler.triggers.cron import CronTrigger
 import atexit
@@ -75,19 +75,19 @@ def predict():
 # #     return mobil_list
        
 
-# def run_scheduled_tasks():
-#     try:
-#         # scheduled_scraping_job()
-#         modelling()
-#     except Exception as e:
-#         print(f"Error running scheduled tasks: {e}")
+def run_scheduled_tasks():
+    try:
+        scheduled_scraping_job()
+        modelling()
+    except Exception as e:
+        print(f"Error running scheduled tasks: {e}")
 
-# scheduler = BackgroundScheduler()
-# scheduler.add_job(func=run_scheduled_tasks, trigger=CronTrigger(hour=00, minute=00))
-# scheduler.start()
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=run_scheduled_tasks, trigger=CronTrigger(hour=00, minute=00))
+scheduler.start()
 
-# # Shut down the scheduler when exiting the app
-# atexit.register(lambda: scheduler.shutdown())
+# Shut down the scheduler when exiting the app
+atexit.register(lambda: scheduler.shutdown())
 
 if __name__ == "_main_":
     app.run(debug=True, use_reloader=False)
