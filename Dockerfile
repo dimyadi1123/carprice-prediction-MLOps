@@ -7,10 +7,11 @@ WORKDIR /app
 # Copy requirements.txt terlebih dahulu untuk memanfaatkan caching layer
 COPY requirements.txt requirements.txt
 
-# Install system dependencies yang dibutuhkan
+# Install system dependencies yang dibutuhkan, termasuk gnupg
 RUN apt-get update && apt-get install -y \
     libgomp1 \
     wget \
+    gnupg \
     unzip \
     && rm -rf /var/lib/apt/lists/*
 
