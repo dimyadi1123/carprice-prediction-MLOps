@@ -128,7 +128,7 @@
                   <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="#home"
-                  >LAMOKAS<span></span
+                  ><span>LAMOKAS</span
                 ></a>
               </div>
               <!--/.navbar-header-->
@@ -564,23 +564,16 @@
         </div>
       </div>
 
-      <div id="result">
-        <div class="predict-container">
-            <div class="min">
-                <p>Min Harga:</p>
-                <h3>{{ min }}</h3>
-            </div>
-            <div class="prediction">
-                <div class="section-header">
-                    <p>Hasil Prediksi Harga:</p>
-                    <h2>{{ prediction }}</h2>
-                </div>
-            </div>
-            <div class="max">
-                <p>Max Harga:</p>
-                <h3>{{ max }}</h3>
-            </div>
+      <div>
+        <div id="result"></div>
+        <div class="container" style="padding-top: 300px">
+          <div class="section-header">
+            <p>Hasil Prediksi Harga :</p>
+            <h2>{{prediction}}</h2>
+          </div>
+          <!--/.section-header-->
         </div>
+      </div>
       </div>
 
       <!-- <div id="result">
@@ -694,7 +687,8 @@
             </div>
           </form>
         </div>
-      </div>
+    
+    </div>
     </footer>
     <!-- Include all js compiled plugins (below), or include individual files as needed -->
     <script>

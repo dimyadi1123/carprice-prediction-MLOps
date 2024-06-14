@@ -748,28 +748,4 @@ nav.navbar.bootsnav .navbar-toggle i{color: #4e4ffa;}
     0%   {bottom:0px;}
     100%  {bottom:7px;}
 }
-
-.predict-container {
-    padding-top: 300px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.section-header {
-    text-align: center;
-}
-.min, .max {
-    flex: 1;
-    text-align: center;
-}
-.min {
-    text-align: left;
-}
-.max {
-    text-align: right;
-}
-.prediction {
-    flex: 2;
-    text-align: center;
-}
 /*========================Thank you=================
