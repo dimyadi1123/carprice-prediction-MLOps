@@ -53,11 +53,16 @@ def predict():
         prediction = predict_model(model, data=df)
         predicted_price = prediction['prediction_label'][0]
 
+        min_price = prediction['prediction_label'][0] - 100000
+        max_price = prediction['prediction_label'][0] + 100000
+
     # Format hasil prediksi ke dalam format rupiah
     formatted_result = f"Rp{predicted_price:,.0f}".replace(",", ".")
+    formatted_min = f"Rp{min_price:,.0f}".replace(",", ".")
+    formatted_max = f"Rp{max_price:,.0f}".replace(",", ".")
 
     # Render halaman hasil dengan prediksi
-    return render_template('index.html', prediction=formatted_result)
+    return render_template('index.html', prediction=formatted_result, min=formatted_min, max=formatted_max)
 
 # def show_list():
 #     df_tabel = pd.read_csv('mobil123_fix.csv')

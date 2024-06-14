@@ -127,7 +127,7 @@
                 >
                   <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="index.html"
+                <a class="navbar-brand" href="#home"
                   >LAMOKAS<span></span
                 ></a>
               </div>
@@ -564,15 +564,23 @@
         </div>
       </div>
 
-      <div id="result">
-        <div class="container" style="padding-top: 300px">
-          <div class="section-header">
-            <p>Hasil Prediksi Harga :</p>
-            <h2>{{prediction}}</h2>
-          </div>
-          <!--/.section-header-->
+      <div>
+        <div class="predict-container">
+            <div class="min">
+                <p>Min Harga:</p>
+                <h3>{{ min }}</h3>
+            </div>
+            <div class="prediction">
+                <div class="section-header">
+                    <p>Hasil Prediksi Harga:</p>
+                    <h2>{{ prediction }}</h2>
+                </div>
+            </div>
+            <div class="max">
+                <p>Max Harga:</p>
+                <h3>{{ max }}</h3>
+            </div>
         </div>
-      </div>
 
       <!-- <div id="result">
         <div class="table-responsive">
@@ -614,6 +622,7 @@
     <!--result predict end -->
 
     <footer class="footer-container">
+      <div id="result">
       <div class="footer-content">
         <div class="footer-contact-info">
           <h2>Contact Information</h2>
@@ -685,6 +694,7 @@
           </form>
         </div>
       </div>
+    </div>
     </footer>
     <!-- Include all js compiled plugins (below), or include individual files as needed -->
     <script>
@@ -705,7 +715,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         const resultElement = document.getElementById("result");
         if (resultElement) {
-          resultElement.scrollIntoView({ behavior: "smooth", block: "end" });
+          resultElement.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       });
     </script>
