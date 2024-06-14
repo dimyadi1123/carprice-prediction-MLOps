@@ -564,7 +564,7 @@
         </div>
       </div>
 
-      <div>
+      <div id="result">
         <div class="container" style="padding-top: 300px">
           <div class="section-header">
             <p>Hasil Prediksi Harga :</p>
@@ -574,7 +574,7 @@
         </div>
       </div>
 
-      <div id="result">
+      <!-- <div id="result">
         <div class="table-responsive">
           <table class="table table-striped">
             <thead>
@@ -594,7 +594,7 @@
               {% endfor %}
             </tbody>
           </table>
-        </div>
+        </div> -->
       </div>
     </section>
     <!--/.service-->
@@ -705,7 +705,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         const resultElement = document.getElementById("result");
         if (resultElement) {
-          resultElement.scrollIntoView({ behavior: "smooth", block: "start" });
+          resultElement.scrollIntoView({ behavior: "smooth", block: "end" });
         }
       });
     </script>
